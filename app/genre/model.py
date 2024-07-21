@@ -12,4 +12,6 @@ class Genre(Base):
     """Модель жанров для книг."""
     name: Mapped[str]
 
-    books = Mapped[list["Book"]] = relationship(secondary=book_genre_association, back_populates="genres")
+    books: Mapped[list["Book"]] = relationship(
+        secondary=book_genre_association, back_populates="genres",
+    )

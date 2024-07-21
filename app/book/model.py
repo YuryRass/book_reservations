@@ -22,8 +22,11 @@ class Book(Base):
     author_id: Mapped[int] = mapped_column(
         ForeignKey('user.id', ondelete='CASCADE'),
     )
-    author = Mapped["User"] = relationship(back_populates='books')
-    genres = Mapped[list["Genre"]] = relationship(secondary=book_genre_association, back_populates="books")
+
+    author: Mapped["User"] = relationship(back_populates='books')
+    genres: Mapped[list["Genre"]] = relationship(
+        secondary=book_genre_association, back_populates="books",
+    )
     reservations: Mapped[list["Reservation"]] = relationship(
         back_populates="book",
         cascade='all, delete',
