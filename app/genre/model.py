@@ -14,4 +14,5 @@ class Genre(Base):
 
     books: Mapped[list["Book"]] = relationship(
         secondary=book_genre_association, back_populates="genres",
+        cascade='all, delete',
     )

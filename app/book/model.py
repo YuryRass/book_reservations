@@ -15,7 +15,6 @@ class Book(Base):
     """Модель книг."""
 
     title: Mapped[str]
-    author: Mapped[str]
     price: Mapped[float]
     pages: Mapped[int]
 
@@ -26,6 +25,7 @@ class Book(Base):
     author: Mapped["User"] = relationship(back_populates='books')
     genres: Mapped[list["Genre"]] = relationship(
         secondary=book_genre_association, back_populates="books",
+        cascade='all, delete',
     )
     reservations: Mapped[list["Reservation"]] = relationship(
         back_populates="book",

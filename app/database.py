@@ -35,6 +35,6 @@ class Base(DeclarativeBase):
 
 book_genre_association = Table(
     'book_genre', Base.metadata,
-    Column('book_id', Integer, ForeignKey("book.id")),
-    Column('genre_id', Integer, ForeignKey("genre.id")),
+    Column('book_id', Integer, ForeignKey("book.id", ondelete='CASCADE')),
+    Column('genre_id', Integer, ForeignKey("genre.id", ondelete='CASCADE')),
 )

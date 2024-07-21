@@ -1,7 +1,7 @@
 """base
 
 Revision ID: eaf8077d41b2
-Revises: 
+Revises:
 Create Date: 2024-07-21 21:54:44.948315
 
 """
@@ -34,7 +34,6 @@ def upgrade() -> None:
     )
     op.create_table('book',
     sa.Column('title', sa.String(), nullable=False),
-    sa.Column('author', sa.String(), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('pages', sa.Integer(), nullable=False),
     sa.Column('author_id', sa.Integer(), nullable=False),
