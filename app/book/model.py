@@ -8,6 +8,7 @@ from app.database import Base, book_genre_association
 if TYPE_CHECKING:
     from app.user.model import User
     from app.genre.model import Genre
+    from app.reservation.model import Reservation
 
 
 class Book(Base):
@@ -23,3 +24,7 @@ class Book(Base):
     )
     author = Mapped["User"] = relationship(back_populates='books')
     genres = Mapped[list["Genre"]] = relationship(secondary=book_genre_association, back_populates="books")
+    reservations: Mapped[list["Reservation"]] = relationship(
+        back_populates="book",
+        cascade='all, delete',
+    )

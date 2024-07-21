@@ -9,6 +9,7 @@ from app.database import Base
 from app.user.model import User  # noqa
 from app.book.model import Book  # noqa
 from app.genre.model import Genre  # noqa
+from app.reservation.model import Reservation  # noqa
 
 from app.config import get_settings
 

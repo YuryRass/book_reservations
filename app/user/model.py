@@ -6,6 +6,7 @@ from app.database import Base
 
 if TYPE_CHECKING:
     from app.book.model import Book
+    from app.reservation.model import Reservation
 
 
 class User(Base):
@@ -17,5 +18,10 @@ class User(Base):
 
     books: Mapped[list['Book']] = relationship(
         back_populates='author',
+        cascade='all, delete',
+    )
+
+    reservations: Mapped[list["Reservation"]] = relationship(
+        back_populates="user",
         cascade='all, delete',
     )
