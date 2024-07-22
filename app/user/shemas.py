@@ -31,13 +31,11 @@ class UserBase(MainModel):
 class UserCreate(UserBase):
     """Схема пользователя для POST запроса."""
 
-    pass
 
 
 class UserUpdate(UserBase):
     """Схема пользователя для UPDATE запроса."""
 
-    pass
 
 
 class UserResponse(UserBase):

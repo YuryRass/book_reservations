@@ -21,13 +21,11 @@ class GenreBase(MainModel):
 class GenreCreate(GenreBase):
     """Схема жанров для POST запроса."""
 
-    pass
 
 
 class GenreUpdate(GenreBase):
     """Схема жанров для UPDATE запроса."""
 
-    pass
 
 
 class GenreResponse(GenreBase):

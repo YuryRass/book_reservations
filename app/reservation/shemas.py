@@ -39,13 +39,11 @@ class ReservationBase(MainModel):
 class ReservationCreate(ReservationBase):
     """Схема бронирования для POST запроса."""
 
-    pass
 
 
 class ReservationUpdate(ReservationBase):
     """Схема бронирования для UPDATE запроса."""
 
-    pass
 
 
 class ReservationResponse(ReservationBase):
