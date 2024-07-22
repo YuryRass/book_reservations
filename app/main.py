@@ -1,16 +1,19 @@
 from fastapi import FastAPI
 
 from app.user.router import router as dish_router
+from app.genre.router import router as genre_router
 
 
-description = """
-    FastAPI приложение для работы с книгами.
-    """
+description = """FastAPI приложение для работы с книгами"""
 
 tags_metadata = [
     {
         'name': 'Users',
         'description': 'CRUD операции с пользователями',
+    },
+    {
+        'name': 'Genres',
+        'description': 'CRUD операции с жанрами',
     },
 ]
 
@@ -33,3 +36,4 @@ app: FastAPI = FastAPI(
 )
 
 app.include_router(dish_router)
+app.include_router(genre_router)

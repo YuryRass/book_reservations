@@ -16,3 +16,9 @@ class UserNotFoundException(MainException):
     """Исключение: пользователь не найден."""
     status_code = status.HTTP_404_NOT_FOUND
     detail = 'User not found'
+
+
+class GenreNotFoundException(MainException):
+    """Исключение: жанр не найден."""
+    status_code = status.HTTP_404_NOT_FOUND
+    detail = 'Genre not found'
