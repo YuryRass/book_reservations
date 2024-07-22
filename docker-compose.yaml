@@ -1,0 +1,102 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:15.1-alpine
+    container_name: postgres
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - 1234:5432
+    networks:
+      - my_network
+    volumes:
+      - psql_network:/var/lib/postgresql/data/
+    healthcheck:
+      test: pg_isready -U ${DB_USER} -d ${DB_NAME}
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  book_app:
+    image: book__app
+    build:
+      context: .
+    container_name: book_app
+    env_file:
+      - .env
+    command: /project/docker/run.sh
+    volumes:
+      - ./app:/project/app
+      - ./docker:/project/docker
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 8000:8000
+    networks:
+      - my_network
+
+  # celery_service:
+  #   image: restaurant_app
+  #   container_name: restaurant_celery
+  #   command: /project/docker/celery_run.sh
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     restaurant_app:
+  #       condition: service_started
+  #     rabbitmq:
+  #       condition: service_healthy
+  #   networks:
+  #     - my_network
+
+  # rabbitmq:
+  #   image: "rabbitmq:3-management-alpine"
+  #   container_name: rabbitmq
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - "5672:5672"  # AMQP протокол
+  #     - "15672:15672"  # Веб-интерфейс RabbitMQ
+  #   networks:
+  #     - my_network
+  #   healthcheck:
+  #     test: ["CMD", "rabbitmqctl", "status"]
+  #     interval: 30s
+  #     timeout: 30s
+  #     retries: 3
+  #     start_period: 40s
+
+  # redis:
+  #   image: redis:latest
+  #   container_name: redis
+  #   networks:
+  #     - my_network
+  #   volumes:
+  #     - redis_data:/data
+  #   expose:
+  #     - 6379
+  #   ports:
+  #     - 6666:6379
+  #   env_file:
+  #     - .env
+  #   healthcheck:
+  #     test: redis-cli ping | grep PONG
+  #     interval: 1s
+  #     timeout: 3s
+  #     retries: 5
+
+networks:
+  my_network:
+    name: my_network
+volumes:
+  psql_network:
+    name: psql_network
+  # redis_data:
+  #   name: redis_data
