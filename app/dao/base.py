@@ -64,7 +64,7 @@ class BaseDAO(Generic[ModelType]):
             return result.one_or_none()
 
     @classmethod
-    async def delete(cls, **kwargs) -> Row[tuple[int]] | None:
+    async def delete(cls, **kwargs) -> Row | None:
         """Удаление записи из модели."""
         assert cls.model is not None
         stmt = delete(cls.model).filter_by(

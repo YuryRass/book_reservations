@@ -42,55 +42,36 @@ services:
     networks:
       - my_network
 
-  # celery_service:
-  #   image: restaurant_app
-  #   container_name: restaurant_celery
-  #   command: /project/docker/celery_run.sh
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     restaurant_app:
-  #       condition: service_started
-  #     rabbitmq:
-  #       condition: service_healthy
-  #   networks:
-  #     - my_network
+  celery_service:
+    image: book__app
+    container_name: celery_app
+    command: /project/docker/celery_run.sh
+    env_file:
+      - .env
+    depends_on:
+      book_app:
+        condition: service_started
+    networks:
+      - my_network
 
-  # rabbitmq:
-  #   image: "rabbitmq:3-management-alpine"
-  #   container_name: rabbitmq
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - "5672:5672"  # AMQP протокол
-  #     - "15672:15672"  # Веб-интерфейс RabbitMQ
-  #   networks:
-  #     - my_network
-  #   healthcheck:
-  #     test: ["CMD", "rabbitmqctl", "status"]
-  #     interval: 30s
-  #     timeout: 30s
-  #     retries: 3
-  #     start_period: 40s
-
-  # redis:
-  #   image: redis:latest
-  #   container_name: redis
-  #   networks:
-  #     - my_network
-  #   volumes:
-  #     - redis_data:/data
-  #   expose:
-  #     - 6379
-  #   ports:
-  #     - 6666:6379
-  #   env_file:
-  #     - .env
-  #   healthcheck:
-  #     test: redis-cli ping | grep PONG
-  #     interval: 1s
-  #     timeout: 3s
-  #     retries: 5
+  redis:
+    image: redis:latest
+    container_name: redis
+    networks:
+      - my_network
+    volumes:
+      - redis_data:/data
+    expose:
+      - 6379
+    ports:
+      - 6666:6379
+    env_file:
+      - .env
+    healthcheck:
+      test: redis-cli ping | grep PONG
+      interval: 1s
+      timeout: 3s
+      retries: 5
 
 networks:
   my_network:
@@ -98,5 +79,5 @@ networks:
 volumes:
   psql_network:
     name: psql_network
-  # redis_data:
-  #   name: redis_data
+  redis_data:
+    name: redis_data
