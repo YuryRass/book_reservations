@@ -32,10 +32,8 @@ class UserCreate(UserBase):
     """Схема пользователя для POST запроса."""
 
 
-
 class UserUpdate(UserBase):
     """Схема пользователя для UPDATE запроса."""
-
 
 
 class UserResponse(UserBase):

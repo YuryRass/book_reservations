@@ -40,10 +40,8 @@ class ReservationCreate(ReservationBase):
     """Схема бронирования для POST запроса."""
 
 
-
 class ReservationUpdate(ReservationBase):
     """Схема бронирования для UPDATE запроса."""
-
 
 
 class ReservationResponse(ReservationBase):

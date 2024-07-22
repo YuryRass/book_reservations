@@ -22,10 +22,8 @@ class GenreCreate(GenreBase):
     """Схема жанров для POST запроса."""
 
 
-
 class GenreUpdate(GenreBase):
     """Схема жанров для UPDATE запроса."""
-
 
 
 class GenreResponse(GenreBase):
