@@ -7,7 +7,7 @@ from sqlalchemy.engine.row import Row
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.dao import ModelType
-from app.database import async_engine, async_session
+from app.database import async_session
 
 
 class BaseDAO(Generic[ModelType]):
@@ -26,11 +26,12 @@ class BaseDAO(Generic[ModelType]):
             return result.one_or_none()
 
     @classmethod
-    async def read(cls) -> Any:
-        """Чтение всех данных из модели."""
+    async def read(cls, **kwargs: Any) -> Any:
+        """Чтение данных из модели."""
         session: AsyncSession
         async with async_session() as session:
-            stmt = select(cls.model.__table__.columns)
+            stmt = select(cls.model.__table__.columns).select_from(
+                cls.model).filter_by(**kwargs)
             result = await session.execute(stmt)
             return result.all()
 

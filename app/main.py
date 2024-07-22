@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from app.user.router import router as dish_router
 from app.genre.router import router as genre_router
+from app.book.router import router as book_router
 
 
 description = """FastAPI приложение для работы с книгами"""
@@ -15,6 +16,10 @@ tags_metadata = [
         'name': 'Genres',
         'description': 'CRUD операции с жанрами',
     },
+    {
+        'name': 'Books',
+        'description': 'CRUD операции с книгами',
+    }
 ]
 
 
@@ -37,3 +42,4 @@ app: FastAPI = FastAPI(
 
 app.include_router(dish_router)
 app.include_router(genre_router)
+app.include_router(book_router)
