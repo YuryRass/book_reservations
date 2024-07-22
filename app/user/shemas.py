@@ -1,7 +1,9 @@
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from app.base.shema import MainModel
 
 
-class UserBase(BaseModel):
+class UserBase(MainModel):
     """Основная схема для пользователя."""
     id: int | None = Field(
         None,
@@ -23,9 +25,6 @@ class UserBase(BaseModel):
         description="Путь до директории с фото аватора",
         example="/path/to/image.png"
     )
-
-    def model_dump(self, *args, **kwargs) -> dict:
-        return super().model_dump(*args, exclude_none=True, **kwargs)
 
 
 class UserCreate(UserBase):
