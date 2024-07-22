@@ -4,7 +4,7 @@ from app.exceptions import GenreNotFoundException
 from app.genre.dao import GenreDAO
 from app.genre.shemas import GenreCreate, GenreResponse, GenreUpdate
 
-router: APIRouter = APIRouter(tags=['Genres'])
+router: APIRouter = APIRouter(tags=["Genres"])
 
 
 @router.post("/genres/", response_model=GenreResponse)

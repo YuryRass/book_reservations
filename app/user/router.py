@@ -4,7 +4,7 @@ from app.exceptions import UserNotFoundException
 from app.user.dao import UserDAO
 from app.user.shemas import UserCreate, UserResponse, UserUpdate
 
-router: APIRouter = APIRouter(tags=['Users'])
+router: APIRouter = APIRouter(tags=["Users"])
 
 
 @router.post("/users/", response_model=UserResponse)

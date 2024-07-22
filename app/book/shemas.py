@@ -8,8 +8,8 @@ from app.user.shemas import UserResponse
 class BookBase(MainModel):
     id: int | None = Field(
         None,
-        description='Уникальный идентификатор книги',
-        example='1',
+        description="Уникальный идентификатор книги",
+        example="1",
     )
     title: str = Field(
         ...,
@@ -62,5 +62,6 @@ class BookUpdate(MainModel):
 
 class FilterBook(BookBase):
     """Модель полного вывода информации и книгах."""
+
     genres: list[GenreResponse]
     author: UserResponse

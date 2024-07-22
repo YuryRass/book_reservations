@@ -18,8 +18,12 @@ class BookDAO(BaseDAO):
 
     @classmethod
     async def read_books_by_genre(cls, genre_id: int) -> list[BookRead]:
-        stmt = select(Book.__table__.columns).select_from(Book).join(
-            Book.genres).filter(Genre.id == genre_id)
+        stmt = (
+            select(Book.__table__.columns)
+            .select_from(Book)
+            .join(Book.genres)
+            .filter(Genre.id == genre_id)
+        )
 
         session: AsyncSession
         async with async_session() as session:
@@ -28,7 +32,8 @@ class BookDAO(BaseDAO):
 
     @classmethod
     async def filter_books_by_price(
-        cls, min_price: float | None = None,
+        cls,
+        min_price: float | None = None,
         max_price: float | None = None,
     ) -> list[BookRead]:
         """Получение книг с фильтрацией по цене."""
@@ -51,8 +56,11 @@ class BookDAO(BaseDAO):
         genre: str | None = None,
         author_id: int | None = None,
     ) -> Any:
-        query = select(Book).options(selectinload(Book.genres)
-                                     ).options(selectinload(Book.author))
+        query = (
+            select(Book)
+            .options(selectinload(Book.genres))
+            .options(selectinload(Book.author))
+        )
 
         if min_price is not None:
             query = query.where(Book.price >= min_price)

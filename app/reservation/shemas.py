@@ -7,9 +7,10 @@ from app.base.shema import MainModel
 
 class ReservationBase(MainModel):
     """Основная схема для бронирования книг."""
+
     id: int | None = Field(
         None,
-        description='Уникальный идентификатор брони',
+        description="Уникальный идентификатор брони",
         example=3,
     )
     start_date: datetime = Field(
@@ -37,15 +38,18 @@ class ReservationBase(MainModel):
 
 class ReservationCreate(ReservationBase):
     """Схема бронирования для POST запроса."""
+
     pass
 
 
 class ReservationUpdate(ReservationBase):
     """Схема бронирования для UPDATE запроса."""
+
     pass
 
 
 class ReservationResponse(ReservationBase):
     """Схема бронирования для вывода ответа."""
+
     class Config:
         from_attributes = True

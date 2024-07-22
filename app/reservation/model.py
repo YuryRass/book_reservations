@@ -17,11 +17,11 @@ class Reservation(Base):
     start_date: Mapped[datetime]
     end_date: Mapped[datetime]
     user_id: Mapped[int] = mapped_column(
-        ForeignKey('user.id', ondelete='CASCADE'),
+        ForeignKey("user.id", ondelete="CASCADE"),
     )
     book_id: Mapped[int] = mapped_column(
-        ForeignKey('book.id', ondelete='CASCADE'),
+        ForeignKey("book.id", ondelete="CASCADE"),
     )
 
-    user: Mapped["User"] = relationship(back_populates='reservations')
-    book: Mapped["Book"] = relationship(back_populates='reservations')
+    user: Mapped["User"] = relationship(back_populates="reservations")
+    book: Mapped["Book"] = relationship(back_populates="reservations")

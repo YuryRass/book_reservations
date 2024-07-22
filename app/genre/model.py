@@ -10,9 +10,11 @@ if TYPE_CHECKING:
 
 class Genre(Base):
     """Модель жанров для книг."""
+
     name: Mapped[str]
 
     books: Mapped[list["Book"]] = relationship(
-        secondary=book_genre_association, back_populates="genres",
-        cascade='all, delete',
+        secondary=book_genre_association,
+        back_populates="genres",
+        cascade="all, delete",
     )

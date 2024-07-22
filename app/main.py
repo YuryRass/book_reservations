@@ -9,33 +9,33 @@ description = """FastAPI приложение для работы с книга�
 
 tags_metadata = [
     {
-        'name': 'Users',
-        'description': 'CRUD операции с пользователями',
+        "name": "Users",
+        "description": "CRUD операции с пользователями",
     },
     {
-        'name': 'Genres',
-        'description': 'CRUD операции с жанрами',
+        "name": "Genres",
+        "description": "CRUD операции с жанрами",
     },
     {
-        'name': 'Books',
-        'description': 'CRUD операции с книгами',
-    }
+        "name": "Books",
+        "description": "CRUD операции с книгами",
+    },
 ]
 
 
 app: FastAPI = FastAPI(
-    title='FastAPI book reservations API',
+    title="FastAPI book reservations API",
     description=description,
-    version='1.0.0',
-    terms_of_service='http://example.com/terms/',
+    version="1.0.0",
+    terms_of_service="http://example.com/terms/",
     contact={
-        'name': 'Support Team',
-        'url': 'http://example.com/contact/',
-        'email': 'support@example.com',
+        "name": "Support Team",
+        "url": "http://example.com/contact/",
+        "email": "support@example.com",
     },
     license_info={
-        'name': 'Apache 2.0',
-        'url': 'https://www.apache.org/licenses/LICENSE-2.0.html',
+        "name": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
     },
     openapi_tags=tags_metadata,
 )

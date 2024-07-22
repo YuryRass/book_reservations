@@ -4,7 +4,7 @@ from app.book.dao import BookDAO
 from app.book.shemas import BookCreate, BookRead, BookUpdate, FilterBook
 from app.exceptions import BookNotFoundException
 
-router: APIRouter = APIRouter(tags=['Books'])
+router: APIRouter = APIRouter(tags=["Books"])
 
 
 @router.post("/books/", response_model=BookRead)
@@ -66,12 +66,10 @@ async def read_books_by_genre(genre_id: int) -> list[BookRead]:
 
 @router.get("/books/filter/")
 async def get_books(
-    min_price: float | None = Query(
-        None, description="Минимальная цена книги"),
-    max_price: float | None = Query(
-        None, description="Максимальная цена книги"),
+    min_price: float | None = Query(None, description="Минимальная цена книги"),
+    max_price: float | None = Query(None, description="Максимальная цена книги"),
     genre: str | None = Query(None, description="Жанр книги"),
-    author_id: int | None = Query(None, description="ID автора книги")
+    author_id: int | None = Query(None, description="ID автора книги"),
 ) -> list[FilterBook]:
     """Вывод подробной информации о книгах с применением фильтрации."""
     books = await BookDAO.filter_books(min_price, max_price, genre, author_id)

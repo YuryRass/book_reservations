@@ -5,6 +5,7 @@ Revises: e8e92c001391
 Create Date: 2024-07-22 00:11:32.954836
 
 """
+
 from datetime import datetime, timedelta
 from typing import Sequence, Union
 
@@ -18,8 +19,8 @@ from app.reservation.model import Reservation
 from app.user.model import User
 
 # revision identifiers, used by Alembic.
-revision: str = 'a556df013cca'
-down_revision: Union[str, None] = 'e8e92c001391'
+revision: str = "a556df013cca"
+down_revision: Union[str, None] = "e8e92c001391"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -81,14 +82,14 @@ def upgrade() -> None:
         start_date=datetime.now(),
         end_date=datetime.now() + timedelta(days=7),
         user_id=user1.id,  # ID пользователя
-        book_id=book1.id,   # ID книги
+        book_id=book1.id,  # ID книги
     )
 
     reservation2 = Reservation(
         start_date=datetime.now(),
         end_date=datetime.now() + timedelta(days=5),
         user_id=user2.id,  # ID пользователя
-        book_id=book2.id,   # ID книги
+        book_id=book2.id,  # ID книги
     )
 
     # Вставка бронирований

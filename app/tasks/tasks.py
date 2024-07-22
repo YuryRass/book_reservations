@@ -8,6 +8,4 @@ from app.tasks.celery import celery
 def delete_reservation(reservation_id: int):
     """Удаление брони для книги."""
     loop = asyncio.get_event_loop()
-    return loop.run_until_complete(
-        ReservationDAO.delete(id=reservation_id)
-    )
+    return loop.run_until_complete(ReservationDAO.delete(id=reservation_id))

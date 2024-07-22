@@ -16,12 +16,12 @@ class User(Base):
     last_name: Mapped[str]
     avatar: Mapped[str]
 
-    books: Mapped[list['Book']] = relationship(
-        back_populates='author',
-        cascade='all, delete',
+    books: Mapped[list["Book"]] = relationship(
+        back_populates="author",
+        cascade="all, delete",
     )
 
     reservations: Mapped[list["Reservation"]] = relationship(
         back_populates="user",
-        cascade='all, delete',
+        cascade="all, delete",
     )
