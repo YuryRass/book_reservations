@@ -1,4 +1,3 @@
-from typing import Any
 from fastapi import APIRouter, Query
 
 from app.exceptions import BookNotFoundException

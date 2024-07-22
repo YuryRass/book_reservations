@@ -28,3 +28,15 @@ class BookNotFoundException(MainException):
     """Исключение: книга не найдена."""
     status_code = status.HTTP_404_NOT_FOUND
     detail = 'Book not found'
+
+
+class ReservationNotFoundException(MainException):
+    """Исключение: бронь не найдена."""
+    status_code = status.HTTP_404_NOT_FOUND
+    detail = 'Reservation not found'
+
+
+class ExistingReservationException(MainException):
+    """Бронь для книги уже существует."""
+    status_code = status.HTTP_400_BAD_REQUEST
+    detail = 'This book is already reserved for the specified dates.'

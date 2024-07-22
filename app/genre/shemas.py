@@ -28,6 +28,6 @@ class GenreUpdate(GenreBase):
 
 
 class GenreResponse(GenreBase):
-    """Схема жанров для GET запроса."""
+    """Схема жанров для вывода ответа."""
     class Config:
         from_attributes = True

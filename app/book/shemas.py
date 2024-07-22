@@ -1,9 +1,7 @@
 from pydantic import Field
 from app.base.shema import MainModel
-from app.genre.model import Genre
 from app.genre.shemas import GenreResponse
-from app.user.model import User
-from app.user.shemas import UserBase, UserResponse
+from app.user.shemas import UserResponse
 
 
 class BookBase(MainModel):
