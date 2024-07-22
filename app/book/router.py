@@ -1,9 +1,8 @@
 from fastapi import APIRouter, Query
 
-from app.exceptions import BookNotFoundException
 from app.book.dao import BookDAO
-from app.book.shemas import BookRead, BookCreate, BookUpdate, FilterBook
-
+from app.book.shemas import BookCreate, BookRead, BookUpdate, FilterBook
+from app.exceptions import BookNotFoundException
 
 router: APIRouter = APIRouter(tags=['Books'])
 

@@ -2,8 +2,7 @@ from fastapi import APIRouter
 
 from app.exceptions import GenreNotFoundException
 from app.genre.dao import GenreDAO
-from app.genre.shemas import GenreCreate, GenreUpdate, GenreResponse
-
+from app.genre.shemas import GenreCreate, GenreResponse, GenreUpdate
 
 router: APIRouter = APIRouter(tags=['Genres'])
 

@@ -2,8 +2,7 @@ from fastapi import APIRouter
 
 from app.exceptions import UserNotFoundException
 from app.user.dao import UserDAO
-from app.user.shemas import UserCreate, UserUpdate, UserResponse
-
+from app.user.shemas import UserCreate, UserResponse, UserUpdate
 
 router: APIRouter = APIRouter(tags=['Users'])
 

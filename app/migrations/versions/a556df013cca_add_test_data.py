@@ -12,11 +12,10 @@ from alembic import op
 from sqlalchemy.orm import Session
 
 from app.book.model import Book
+from app.database import book_genre_association
 from app.genre.model import Genre
 from app.reservation.model import Reservation
 from app.user.model import User
-from app.database import book_genre_association
-
 
 # revision identifiers, used by Alembic.
 revision: str = 'a556df013cca'

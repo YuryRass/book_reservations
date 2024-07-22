@@ -1,15 +1,8 @@
 from sqlalchemy import Column, ForeignKey, Integer, Table
-from sqlalchemy.ext.asyncio import (
-    AsyncEngine,
-    async_sessionmaker,
-    create_async_engine,
-)
-from sqlalchemy.orm import (
-    DeclarativeBase,
-    Mapped,
-    declared_attr,
-    mapped_column,
-)
+from sqlalchemy.ext.asyncio import (AsyncEngine, async_sessionmaker,
+                                    create_async_engine)
+from sqlalchemy.orm import (DeclarativeBase, Mapped, declared_attr,
+                            mapped_column)
 
 from app.config import get_settings
 
