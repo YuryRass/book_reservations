@@ -2,7 +2,7 @@ from typing import Any
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import selectinload, joinedload
+from sqlalchemy.orm import selectinload
 
 from app.book.model import Book
 from app.book.shemas import BookRead
@@ -10,7 +10,6 @@ from app.dao.base import BaseDAO
 from app.database import async_session
 from app.genre.model import Genre
 from app.reservation.model import Reservation
-from app.user.model import User
 
 
 class BookDAO(BaseDAO):

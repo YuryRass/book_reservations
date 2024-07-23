@@ -69,4 +69,5 @@ class FilterBook(BookBase):
 
 class ReservedBook(BookRead):
     """Модель для забронированных книг"""
+
     user_id: int

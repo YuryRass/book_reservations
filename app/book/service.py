@@ -61,10 +61,8 @@ class BookService:
     @classmethod
     async def get_books(
         cls,
-        min_price: float | None = Query(
-            None, description="Минимальная цена книги"),
-        max_price: float | None = Query(
-            None, description="Максимальная цена книги"),
+        min_price: float | None = Query(None, description="Минимальная цена книги"),
+        max_price: float | None = Query(None, description="Максимальная цена книги"),
         genre: str | None = Query(None, description="Жанр книги"),
         author_id: int | None = Query(None, description="ID автора книги"),
     ) -> list[FilterBook]:
@@ -78,8 +76,6 @@ class BookService:
         return books
 
     @classmethod
-    async def get_reserved_books(
-        cls, user_id: int
-    ) -> list[ReservedBook]:
+    async def get_reserved_books(cls, user_id: int) -> list[ReservedBook]:
         """Вывод забронированных пользователем книг."""
         return await BookDAO.get_reserved_books(user_id)
