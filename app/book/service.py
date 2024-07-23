@@ -6,6 +6,7 @@ from app.exceptions import BookNotFoundException
 
 
 class BookService:
+    """Сервисный слой книг."""
     @classmethod
     async def create_book(cls, book: BookCreate) -> BookRead:
         """Создание книги."""

@@ -21,7 +21,7 @@ class ReservationBase(MainModel):
     end_date: datetime = Field(
         ...,
         description="Дата и время окончания бронирования книги",
-        example=datetime.now() + timedelta(days=5),
+        example=datetime.now() + timedelta(seconds=10),
     )
 
     user_id: int = Field(
