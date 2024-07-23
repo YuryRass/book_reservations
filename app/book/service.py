@@ -7,6 +7,7 @@ from app.exceptions import BookNotFoundException
 
 class BookService:
     """Сервисный слой книг."""
+
     @classmethod
     async def create_book(cls, book: BookCreate) -> BookRead:
         """Создание книги."""
@@ -60,15 +61,16 @@ class BookService:
     @classmethod
     async def get_books(
         cls,
-        min_price: float | None = Query(
-            None, description="Минимальная цена книги"),
-        max_price: float | None = Query(
-            None, description="Максимальная цена книги"),
+        min_price: float | None = Query(None, description="Минимальная цена книги"),
+        max_price: float | None = Query(None, description="Максимальная цена книги"),
         genre: str | None = Query(None, description="Жанр книги"),
         author_id: int | None = Query(None, description="ID автора книги"),
     ) -> list[FilterBook]:
         """Вывод подробной информации о книгах с применением фильтрации."""
         books = await BookDAO.filter_books(
-            min_price, max_price, genre, author_id,
+            min_price,
+            max_price,
+            genre,
+            author_id,
         )
         return books

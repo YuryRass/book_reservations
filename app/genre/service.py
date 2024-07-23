@@ -25,9 +25,7 @@ class GenreService:
         return genre
 
     @classmethod
-    async def update_genre(
-        cls, genre_id: int, genre: GenreUpdate
-    ) -> GenreResponse:
+    async def update_genre(cls, genre_id: int, genre: GenreUpdate) -> GenreResponse:
         """Изменение жанра по его ID."""
         updated_genre = await GenreDAO.update(genre_id, **genre.model_dump())
         if updated_genre is None:
