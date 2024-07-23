@@ -2,13 +2,15 @@ from typing import Any
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import selectinload
+from sqlalchemy.orm import selectinload, joinedload
 
 from app.book.model import Book
 from app.book.shemas import BookRead
 from app.dao.base import BaseDAO
 from app.database import async_session
 from app.genre.model import Genre
+from app.reservation.model import Reservation
+from app.user.model import User
 
 
 class BookDAO(BaseDAO):
@@ -77,3 +79,19 @@ class BookDAO(BaseDAO):
             books = result.scalars().all()
 
         return books
+
+    @classmethod
+    async def get_reserved_books(cls, user_id: int | None = None) -> Any:
+        """Выводит полную информацию о забронированных книгах."""
+        query = (
+            select(Book.__table__.columns, Reservation.user_id)
+            .join(Reservation)
+            .where(Reservation.user_id == user_id)
+        )
+
+        session: AsyncSession
+        async with async_session() as session:
+            result = await session.execute(query)
+            reserved_books = result.all()
+
+        return reserved_books

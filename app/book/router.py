@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Query
 
 from app.book.service import BookService
-from app.book.shemas import BookCreate, BookRead, BookUpdate, FilterBook
+from app.book.shemas import BookCreate, BookRead, BookUpdate, FilterBook, ReservedBook
 
 router: APIRouter = APIRouter(tags=["Books"])
 
@@ -57,3 +57,8 @@ async def get_books(
 ) -> list[FilterBook]:
     """Вывод подробной информации о книгах с применением фильтрации."""
     return await BookService.get_books(min_price, max_price, genre, author_id)
+
+
+@router.get("/books/reserved/", response_model=list[ReservedBook])
+async def get_reserved_books(user_id: int) -> list[ReservedBook]:
+    return await BookService.get_reserved_books(user_id)

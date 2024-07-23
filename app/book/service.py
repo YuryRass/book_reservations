@@ -1,7 +1,7 @@
 from fastapi import Query
 
 from app.book.dao import BookDAO
-from app.book.shemas import BookCreate, BookRead, BookUpdate, FilterBook
+from app.book.shemas import BookCreate, BookRead, BookUpdate, FilterBook, ReservedBook
 from app.exceptions import BookNotFoundException
 
 
@@ -61,8 +61,10 @@ class BookService:
     @classmethod
     async def get_books(
         cls,
-        min_price: float | None = Query(None, description="Минимальная цена книги"),
-        max_price: float | None = Query(None, description="Максимальная цена книги"),
+        min_price: float | None = Query(
+            None, description="Минимальная цена книги"),
+        max_price: float | None = Query(
+            None, description="Максимальная цена книги"),
         genre: str | None = Query(None, description="Жанр книги"),
         author_id: int | None = Query(None, description="ID автора книги"),
     ) -> list[FilterBook]:
@@ -74,3 +76,10 @@ class BookService:
             author_id,
         )
         return books
+
+    @classmethod
+    async def get_reserved_books(
+        cls, user_id: int
+    ) -> list[ReservedBook]:
+        """Вывод забронированных пользователем книг."""
+        return await BookDAO.get_reserved_books(user_id)

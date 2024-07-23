@@ -65,3 +65,8 @@ class FilterBook(BookBase):
 
     genres: list[GenreResponse]
     author: UserResponse
+
+
+class ReservedBook(BookRead):
+    """Модель для забронированных книг"""
+    user_id: int
