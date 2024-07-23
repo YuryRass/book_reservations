@@ -2,6 +2,7 @@
 .git
 .gitignore
 .gitattributes
+readme_images/
 
 
 # CI
