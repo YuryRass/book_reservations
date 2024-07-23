@@ -61,4 +61,5 @@ async def get_books(
 
 @router.get("/books/reserved/", response_model=list[ReservedBook])
 async def get_reserved_books(user_id: int) -> list[ReservedBook]:
+    """Вывод забронированных пользователем книг."""
     return await BookService.get_reserved_books(user_id)
