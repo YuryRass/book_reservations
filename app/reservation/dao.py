@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.dao.base import BaseDAO
 from app.database import async_session
 from app.exceptions import ExistingReservationException, ReservationNotFoundException
+from app.reservation.async_redis import RedisClient
 from app.reservation.model import Reservation
 from app.reservation.shemas import ReservationCreate, ReservationResponse
 
@@ -39,4 +40,12 @@ class ReservationDAO(BaseDAO):
         if not reservation:
             raise ReservationNotFoundException
 
-        return await ReservationDAO.delete(id=reservation.id)
+        return await super().delete(id=reservation_id)
+
+    @classmethod
+    async def delete_reservation(cls, reservation_id: int) -> ReservationResponse:
+        """Удаление бронирования из БД и кеша."""
+        # Удаляем сначала из кеша
+        await RedisClient.delete(reservation_id)
+
+        return await super().delete(id=reservation_id)
