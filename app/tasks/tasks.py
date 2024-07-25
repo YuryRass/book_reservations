@@ -20,5 +20,5 @@ def delete_reservation(reservation_id: int):
         else:
             logger.warning(f"Бронь с ID={reservation_id} не нашлась в БД")
     except Exception as ex:
-        logger.error(f'Ошибка в удалении брони: {ex}', exc_info=True)
+        logger.error(f"Ошибка в удалении брони: {ex}", exc_info=True)
         raise

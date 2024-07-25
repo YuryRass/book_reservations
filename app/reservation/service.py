@@ -38,7 +38,8 @@ class ReservationService:
             return new_reservation
         except Exception as ex:
             logger.error(
-                f'Ошибка в бронировании книги: {ex}', exc_info=True,
+                f"Ошибка в бронировании книги: {ex}",
+                exc_info=True,
             )
             raise
 
@@ -59,7 +60,7 @@ class ReservationService:
             return reservation
         except Exception as ex:
             logger.error(
-                f'Ошибка в отмене задачи номер {task_id}: {ex}',
+                f"Ошибка в отмене задачи номер {task_id}: {ex}",
                 exc_info=True,
             )
             raise
