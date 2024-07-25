@@ -43,7 +43,9 @@ class ReservationDAO(BaseDAO):
         return await super().delete(id=reservation_id)
 
     @classmethod
-    async def delete_reservation(cls, reservation_id: int) -> ReservationResponse:
+    async def delete_reservation(
+        cls, reservation_id: int
+    ) -> ReservationResponse:
         """Удаление бронирования из БД и кеша."""
         # Удаляем сначала из кеша
         await RedisClient.delete(reservation_id)
