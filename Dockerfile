@@ -11,4 +11,4 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 COPY . .
 
-RUN chmod a+x docker/*.sh
+RUN chmod a+x /project/docker/*.sh
