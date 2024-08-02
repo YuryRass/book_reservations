@@ -48,6 +48,9 @@ services:
     command: /project/docker/celery_run.sh
     env_file:
       - .env
+    volumes:
+      - ./app:/project/app
+      - ./docker:/project/docker
     depends_on:
       book_app:
         condition: service_started

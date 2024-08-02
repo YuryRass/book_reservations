@@ -8,4 +8,5 @@ celery = Celery(
     "tasks",
     broker=settings.REDIS_URL,
     include=["app.tasks.tasks"],
+    backend="rpc://",
 )
